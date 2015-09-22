@@ -1,0 +1,7 @@
+{
+    "redis-host": "tools-redis",
+    "redis-namespace": "commons-metadata-extractor-34408d5b-99e5-4fa2-8425-d1e79f88e990",
+    "redis-filequeue-name": "filequeue",
+    "redis-filequeue-maxsize": 100,
+    "filequeue-data-dir": "./filequeue-data"
+}
