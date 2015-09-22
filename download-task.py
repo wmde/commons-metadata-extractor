@@ -26,13 +26,15 @@ def makeprocessqentry(config, jobid, path, imgname, timestamp, size):
 if __name__=='__main__':
     config= json.load(open("config.json"))
     makedatadir(config)
-    downloadq= RedisQueue(host=config["redis-host"], namespace=config["redis-namespace"], name=config["redis-download-queue-name"])
-    processq= RedisQueue(host=config["redis-host"], namespace=config["redis-namespace"], name=config["redis-process-queue-name"])
+    downloadq= RedisQueue(host=config["redis-host"], namespace=config["redis-namespace"], name=config["redis-download-queue"])
+    processq= RedisQueue(host=config["redis-host"], namespace=config["redis-namespace"], name=config["redis-process-queue"])
     session= requests.Session()
+    
+    processq.clear()
 
     while True:
         row= json.loads(downloadq.get())
-        print "%s => " % row['name'],
+        print "%s => " % row['name'].encode('utf-8'),
         r= session.get(row['url'])
         print(r.status_code)
         if r.status_code!=200:
