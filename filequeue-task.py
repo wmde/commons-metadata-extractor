@@ -22,7 +22,7 @@ def commonsfiles(start='', sortkey='img_sha1', limit=None):
     """
     generator which yields a dict for each file to download:
     { img_name,img_timestamp,img_size,url,resume }
-    files are ordered by the sha1 hash of their content
+    files are ordered by the sha1 hash of their content by default
     """
     def mkconn():
         conn= MySQLdb.connect( read_default_file=os.path.expanduser('~/replica.my.cnf'), host='commonswiki.labsdb', use_unicode=True, cursorclass=MySQLdb.cursors.DictCursor )
